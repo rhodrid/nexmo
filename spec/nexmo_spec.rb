@@ -247,6 +247,26 @@ describe 'Nexmo::Client' do
     end
   end
 
+  describe 'send_verification method' do
+    it 'posts to the verify json resource and returns the response object' do
+      url = "#@base_url/verify/json"
+
+      stub_request(:post, url).with(@form_urlencoded_data).to_return(@json_response_body)
+
+      @client.send_verification(number: '16365553226', brand: 'FooBar')
+    end
+  end
+
+  describe 'check_verification method' do
+    it 'posts to the verify check json resource and returns the response object' do
+      url = "#@base_url/verify/check/json"
+
+      stub_request(:post, url).with(@form_urlencoded_data).to_return(@json_response_body)
+
+      @client.check_verification(request_id: '4723835832472', code: '8372')
+    end
+  end
+
   it 'raises an exception if the response code is not 2xx' do
     stub_request(:post, "#@base_url/sms/json").with(@form_urlencoded_data).to_return(status: 500)
 

@@ -112,6 +112,14 @@ module Nexmo
       post('/tts-prompt/json', params)
     end
 
+    def send_verification(params)
+      post('/verify/json', params)
+    end
+
+    def check_verification(params)
+      post('/verify/check/json', params)
+    end
+
     private
 
     def get(path, params = {})
